@@ -5,6 +5,11 @@
 #include "Characters/RPGBaseCharacter.h"
 #include "RPGHeroCharacter.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
+class UDataAsset_InputConfig;
+struct FInputActionValue;
+
 UCLASS()
 class RPG_API ARPGHeroCharacter : public ARPGBaseCharacter
 {
@@ -14,16 +19,32 @@ public:
 	ARPGHeroCharacter();
 
 protected:
+	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	virtual void BeginPlay() override;
 
 private:
 #pragma region Components
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
-	class USpringArmComponent* CameraBoom;
+	USpringArmComponent* CameraBoom;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
-	class UCameraComponent* FollowCamera;
+	UCameraComponent* FollowCamera;
 
 #pragma endregion
+
+	
+
+#pragma region Inputs
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "CharacterData", meta = (AllowPrivateAccess = "true"))
+	UDataAsset_InputConfig* InputConfigDataAsset;
+
+	void Input_Move(const FInputActionValue& ActionValue);
+	void Input_Look(const FInputActionValue& ActionValue);
+
+#pragma endregion
+
+
+
 };

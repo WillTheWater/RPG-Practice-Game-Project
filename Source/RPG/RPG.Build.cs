@@ -14,8 +14,8 @@ public class RPG : ModuleRules
 			"CoreUObject", 
 			"Engine", 
 			"InputCore", 
-			"EnhancedInput",
-            "GameplayTags"
+            "GameplayTags",
+			"EnhancedInput"
         });
 
 		PrivateDependencyModuleNames.AddRange(new string[] {  });

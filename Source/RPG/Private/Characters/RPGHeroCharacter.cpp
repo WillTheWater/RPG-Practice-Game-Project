@@ -10,6 +10,7 @@
 #include "DataAssets/Input/DataAsset_InputConfig.h"
 #include "Components/Input/RPGInputComponent.h"
 #include "RPGGameplayTags.h"
+#include "GAS/RPGAbilitySystemComponent.h"
 #include "DebugHelpers.h"
 
 ARPGHeroCharacter::ARPGHeroCharacter()
@@ -36,6 +37,18 @@ ARPGHeroCharacter::ARPGHeroCharacter()
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 }
 
+void ARPGHeroCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	if (RPGAbilitySystemComponent && RPGAttributeSet)
+	{
+		const FString ASCTest = FString::Printf(TEXT("OnerActor: %s, Avitar: %s"), *RPGAbilitySystemComponent->GetOwnerActor()->GetActorLabel(), *RPGAbilitySystemComponent->GetAvatarActor()->GetActorLabel());
+		DebugPrint::Print(TEXT("RPGAbilitySystemComponent Working! ") + ASCTest);
+		DebugPrint::Print(TEXT("RPGAttributeSet Working! ") + ASCTest);
+	}
+}
+
 void ARPGHeroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	checkf(InputConfigDataAsset, TEXT("Forgot to assign a valid data asset config"));
@@ -52,8 +65,6 @@ void ARPGHeroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 void ARPGHeroCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-
-	DebugPrint::Print(TEXT("Working"));
 }
 
 void ARPGHeroCharacter::Input_Move(const FInputActionValue& ActionValue)
@@ -65,14 +76,12 @@ void ARPGHeroCharacter::Input_Move(const FInputActionValue& ActionValue)
 	{
 		const FVector ForwardDirection = MovementRotation.RotateVector(FVector::ForwardVector);
 		AddMovementInput(ForwardDirection, MovementVector.Y);
-		DebugPrint::Print("ShouldMove");
 	}
 
 	if (MovementVector.X != 0.f)
 	{
 		const FVector RightDirection = MovementRotation.RotateVector(FVector::RightVector);
 		AddMovementInput(RightDirection, MovementVector.X);
-		DebugPrint::Print("ShouldMove");
 	}
 }
 

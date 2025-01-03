@@ -8,6 +8,7 @@
 
 class URPGAbilitySystemComponent;
 class URPGAttributeSet;
+class UDataAsset_StartupBase;
 
 UCLASS()
 class RPG_API ARPGBaseCharacter : public ACharacter, public IAbilitySystemInterface
@@ -17,7 +18,7 @@ class RPG_API ARPGBaseCharacter : public ACharacter, public IAbilitySystemInterf
 public:
 	ARPGBaseCharacter();
 
-	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 
 	FORCEINLINE URPGAbilitySystemComponent* GetASComponent() const;
 	FORCEINLINE URPGAttributeSet* GetAttributeSet() const;
@@ -31,5 +32,8 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AbilitySystem")
 	URPGAttributeSet* RPGAttributeSet;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "CharacterData")
+	TSoftObjectPtr<UDataAsset_StartupBase> CharacterStartupData;
 
 };

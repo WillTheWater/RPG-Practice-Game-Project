@@ -11,6 +11,7 @@
 #include "Components/Input/RPGInputComponent.h"
 #include "RPGGameplayTags.h"
 #include "GAS/RPGAbilitySystemComponent.h"
+#include "DataAssets/StartupData/DataAsset_HeroStartup.h"
 #include "DebugHelpers.h"
 
 ARPGHeroCharacter::ARPGHeroCharacter()
@@ -41,11 +42,12 @@ void ARPGHeroCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 
-	if (RPGAbilitySystemComponent && RPGAttributeSet)
+	if (!CharacterStartupData.IsNull())
 	{
-		const FString ASCTest = FString::Printf(TEXT("OnerActor: %s, Avitar: %s"), *RPGAbilitySystemComponent->GetOwnerActor()->GetActorLabel(), *RPGAbilitySystemComponent->GetAvatarActor()->GetActorLabel());
-		DebugPrint::Print(TEXT("RPGAbilitySystemComponent Working! ") + ASCTest);
-		DebugPrint::Print(TEXT("RPGAttributeSet Working! ") + ASCTest);
+		if (UDataAsset_StartupBase* LoadedData = CharacterStartupData.LoadSynchronous())
+		{
+			LoadedData->GiveToASC(RPGAbilitySystemComponent);
+		}
 	}
 }
 

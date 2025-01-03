@@ -37,6 +37,8 @@ void ARPGBaseCharacter::PossessedBy(AController* NewController)
 	if (RPGAbilitySystemComponent)
 	{
 		RPGAbilitySystemComponent->InitAbilityActorInfo(this, this);
+
+		ensureMsgf(!CharacterStartupData.IsNull(), TEXT("No Assigned Startup Data to %s"), *GetName());
 	}
 }
 

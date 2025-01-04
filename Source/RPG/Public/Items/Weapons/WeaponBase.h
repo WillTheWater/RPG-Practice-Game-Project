@@ -15,13 +15,12 @@ class RPG_API AWeaponBase : public AActor
 public:	
 	AWeaponBase();
 
+	FORCEINLINE UBoxComponent* GetWeaponCollisonBox() const;
+
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
 	UStaticMeshComponent* WeaponMesh;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
 	UBoxComponent* WeaponCollisionBox;
-
-public:
-	FORCEINLINE UBoxComponent* GetWeaponCollisonBox() const;
 };

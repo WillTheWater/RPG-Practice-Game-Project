@@ -6,7 +6,7 @@
 #include "RPGGameplayAbility.generated.h"
 
 UENUM(BlueprintType)
-enum class ERPGAbilityActivationPolicy :uint8
+enum class ERPGAbilityActivationPolicy : uint8
 {
 	ON_TRIGGERED,
 	ON_GIVEN

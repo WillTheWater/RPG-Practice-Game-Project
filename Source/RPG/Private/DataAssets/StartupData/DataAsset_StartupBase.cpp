@@ -18,7 +18,7 @@ void UDataAsset_StartupBase::GrantAbilities(const TArray<TSubclassOf<URPGGamepla
 
 	for (const TSubclassOf<URPGGameplayAbility>& Ability : InAbilitiesToGive)
 	{
-		if (Ability) { continue; }
+		if (!Ability) { continue; }
 
 		FGameplayAbilitySpec AbilitySpec(Ability);
 		AbilitySpec.SourceObject = InASCToGive->GetAvatarActor();

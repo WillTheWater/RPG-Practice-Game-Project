@@ -12,6 +12,7 @@
 #include "RPGGameplayTags.h"
 #include "GAS/RPGAbilitySystemComponent.h"
 #include "DataAssets/StartupData/DataAsset_HeroStartup.h"
+#include "Components/Combat/HeroCombatComponent.h"
 #include "DebugHelpers.h"
 
 ARPGHeroCharacter::ARPGHeroCharacter()
@@ -36,6 +37,13 @@ ARPGHeroCharacter::ARPGHeroCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 500.f, 0.f);
 	GetCharacterMovement()->MaxWalkSpeed = 400.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
+
+	HeroCombatComponent = CreateDefaultSubobject<UHeroCombatComponent>(TEXT("HeroCombatComponent"));
+}
+
+UHeroCombatComponent* ARPGHeroCharacter::GetHeroCombatComponent() const
+{
+	return HeroCombatComponent;
 }
 
 void ARPGHeroCharacter::PossessedBy(AController* NewController)

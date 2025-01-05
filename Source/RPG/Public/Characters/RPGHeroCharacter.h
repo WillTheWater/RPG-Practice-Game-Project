@@ -9,6 +9,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class UDataAsset_InputConfig;
 struct FInputActionValue;
+class UHeroCombatComponent;
 
 UCLASS()
 class RPG_API ARPGHeroCharacter : public ARPGBaseCharacter
@@ -17,6 +18,8 @@ class RPG_API ARPGHeroCharacter : public ARPGBaseCharacter
 	
 public:
 	ARPGHeroCharacter();
+
+	FORCEINLINE UHeroCombatComponent* GetHeroCombatComponent() const;
 
 protected:
 	virtual void PossessedBy(AController* NewController) override;
@@ -31,6 +34,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* FollowCamera;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat", meta = (AllowPrivateAccess = "true"))
+	UHeroCombatComponent* HeroCombatComponent;
 
 #pragma endregion
 

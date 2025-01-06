@@ -2,6 +2,7 @@
 
 
 #include "GAS/Abilities/RPGGameplayAbility.h"
+#include "Components/Combat/PawnCombatComponent.h"
 #include "GAS/RPGAbilitySystemComponent.h"
 
 void URPGGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec)
@@ -28,4 +29,10 @@ void URPGGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, co
 			ActorInfo->AbilitySystemComponent->ClearAbility(Handle);
 		}
 	}
+}
+
+UPawnCombatComponent* URPGGameplayAbility::GetPawnCombatComponentFromActorInfo() const
+{
+	return GetAvatarActorFromActorInfo()->FindComponentByClass<UPawnCombatComponent>();
+	
 }

@@ -6,6 +6,7 @@
 #include "RPGGameplayAbility.generated.h"
 
 class UPawnCombatComponent;
+class URPGAbilitySystemComponent;
 
 UENUM(BlueprintType)
 enum class ERPGAbilityActivationPolicy : uint8
@@ -29,4 +30,7 @@ protected:
 
 	UFUNCTION(BlueprintPure, Category = "Character|Ability")
 	UPawnCombatComponent* GetPawnCombatComponentFromActorInfo() const;
+	
+	UFUNCTION(BlueprintPure, Category = "Character|Ability")
+	URPGAbilitySystemComponent* GetRPGASCFromActorInfo() const;
 };

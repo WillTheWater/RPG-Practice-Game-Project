@@ -13,3 +13,9 @@ UInputAction* UDataAsset_InputConfig::FindNativeInputActionByTag(const FGameplay
 	}
 	return nullptr;
 }
+
+bool FRPGInputActionConfig::IsValid() const
+{
+	return InputTag.IsValid() && InputAction;
+	
+}

@@ -20,6 +20,8 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
 	UInputAction* InputAction;
+
+	bool IsValid() const;
 };
 
 UCLASS()
@@ -33,6 +35,9 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (TitleProperty = "InputTag"))
 	TArray<FRPGInputActionConfig> NativeInputActions;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (TitleProperty = "InputTag"))
+	TArray<FRPGInputActionConfig> AbilityInputActions;
 
 	UInputAction* FindNativeInputActionByTag(const FGameplayTag& InInputTag) const;
 };

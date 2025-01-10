@@ -3,6 +3,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Characters/RPGBaseCharacter.h"
+#include "GameplayTagContainer.h"
 #include "RPGHeroCharacter.generated.h"
 
 class USpringArmComponent;
@@ -49,6 +50,8 @@ private:
 
 	void Input_Move(const FInputActionValue& ActionValue);
 	void Input_Look(const FInputActionValue& ActionValue);
+	void Input_AbilityPressed(FGameplayTag InInputTag);
+	void Input_AbilityReleased(FGameplayTag InInputTag);
 
 #pragma endregion
 

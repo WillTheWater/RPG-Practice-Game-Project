@@ -1,3 +1,3 @@
 // WillTheWater All Rights Reserved
 
-#include "Items/Weapons/HeroWeapon.h"
+#include "RPGTypes/RPGStructTypes.h"

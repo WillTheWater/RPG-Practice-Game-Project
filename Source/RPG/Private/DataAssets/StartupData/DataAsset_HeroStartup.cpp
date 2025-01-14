@@ -5,11 +5,6 @@
 #include "GAS/RPGAbilitySystemComponent.h"
 #include "DebugHelpers.h"
 
-bool FRPGAbilitySet::IsValid() const
-{
-    return InputTag.IsValid() && AbilityToGrant;
-}
-
 void UDataAsset_HeroStartup::GiveToASC(URPGAbilitySystemComponent* InASCToGive, int32 ApplyLevel)
 {
     Super::GiveToASC(InASCToGive, ApplyLevel);

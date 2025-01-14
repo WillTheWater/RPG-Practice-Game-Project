@@ -2,6 +2,8 @@
 
 
 #include "GAS/RPGAbilitySystemComponent.h"
+#include "RPGTypes/RPGStructTypes.h"
+#include "GAS/Abilities/RPGGameplayAbility.h"
 
 void URPGAbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& InInput)
 {
@@ -17,4 +19,33 @@ void URPGAbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& InInp
 
 void URPGAbilitySystemComponent::OnAbilityInputReleased(const FGameplayTag& InInput)
 {
+}
+
+void URPGAbilitySystemComponent::GrantHeroWeaponAbilities(const TArray<FRPGAbilitySet>& InDefaultWeaponAbilities, int32 ApplyLevel, TArray<FGameplayAbilitySpecHandle>& OutGrantedAbilitySpecHandle)
+{
+	if (InDefaultWeaponAbilities.IsEmpty()) { return; }
+
+	for (const FRPGAbilitySet& Ability : InDefaultWeaponAbilities)
+	{
+		if (!Ability.IsValid()) { continue; }
+		FGameplayAbilitySpec Spec(Ability.AbilityToGrant);
+		Spec.SourceObject = GetAvatarActor();
+		Spec.Level = ApplyLevel;
+		Spec.DynamicAbilityTags.AddTag(Ability.InputTag);
+		
+		OutGrantedAbilitySpecHandle.AddUnique(GiveAbility(Spec));
+	}
+}
+
+void URPGAbilitySystemComponent::RemoveGrantHeroWeaponAbilities(UPARAM(ref)TArray<FGameplayAbilitySpecHandle>& RemoveAbilitySpecHandle)
+{
+	if (RemoveAbilitySpecHandle.IsEmpty()) { return; }
+	for (const FGameplayAbilitySpecHandle SpecHandle : RemoveAbilitySpecHandle)
+	{
+		if (SpecHandle.IsValid())
+		{
+			ClearAbility(SpecHandle);
+		}
+	}
+	RemoveAbilitySpecHandle.Empty();
 }

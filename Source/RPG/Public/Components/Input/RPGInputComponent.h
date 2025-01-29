@@ -22,7 +22,7 @@ public:
 template<class UserObject, typename CallbackFunction>
 inline void URPGInputComponent::BindNativeInputAction(const UDataAsset_InputConfig* InInputConfig, const FGameplayTag& InInputTag, ETriggerEvent TriggerEvent, UserObject* ContextObject, CallbackFunction CBFunction)
 {
-	checkf(InInputConfig, TEXT("Iput config data asset is null, can not proceed with binding"));
+	checkf(InInputConfig, TEXT("Input config data asset is null, can not proceed with binding"));
 
 	if (UInputAction* FoundAction = InInputConfig->FindNativeInputActionByTag(InInputTag))
 	{
@@ -33,7 +33,7 @@ inline void URPGInputComponent::BindNativeInputAction(const UDataAsset_InputConf
 template<class UserObject, typename CallbackFunction>
 inline void URPGInputComponent::BindAbilityInputAction(const UDataAsset_InputConfig* InInputConfig, UserObject* ContextObject, CallbackFunction InputPressed, CallbackFunction InputReleased)
 {
-	checkf(InInputConfig, TEXT("Iput config data asset is null, can not proceed with binding"));
+	checkf(InInputConfig, TEXT("Input config data asset is null, can not proceed with binding"));
 
 	for (const FRPGInputActionConfig& AIAConfig : InInputConfig->AbilityInputActions)
 	{

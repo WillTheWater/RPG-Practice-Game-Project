@@ -4,6 +4,8 @@
 #include "Characters/RPGEnemyCharacter.h"
 
 #include "Components/Combat/EnemyCombatComponent.h"
+#include "DataAssets/StartupData/DataAsset_StartupBase.h"
+#include "Engine/AssetManager.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 ARPGEnemyCharacter::ARPGEnemyCharacter()
@@ -19,4 +21,28 @@ ARPGEnemyCharacter::ARPGEnemyCharacter()
 	GetCharacterMovement()->BrakingDecelerationWalking = 1000.f;
 
 	EnemyCombatComponent = CreateDefaultSubobject<UEnemyCombatComponent>("EnemyCombatComponent");
+}
+
+void ARPGEnemyCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+	InitEnemyStartupData();
+}
+
+void ARPGEnemyCharacter::InitEnemyStartupData()
+{
+	if (CharacterStartupData.IsNull()){return;}
+	UAssetManager::GetStreamableManager().RequestAsyncLoad(
+		CharacterStartupData.ToSoftObjectPath(),
+		FStreamableDelegate::CreateLambda(
+			[this]()
+			{
+				if (UDataAsset_StartupBase* LoadedData = CharacterStartupData.Get())
+				{
+					LoadedData->GiveToASC(RPGAbilitySystemComponent);
+					GEngine->AddOnScreenDebugMessage(1, 5, FColor::Red, "Data Loaded");
+				}
+			}
+		)
+	);
 }

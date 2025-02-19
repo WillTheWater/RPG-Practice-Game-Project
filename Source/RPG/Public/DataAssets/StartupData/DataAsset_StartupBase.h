@@ -8,6 +8,7 @@
 
 class URPGGameplayAbility;
 class URPGAbilitySystemComponent;
+class UGameplayEffect;
 
 UCLASS()
 class RPG_API UDataAsset_StartupBase : public UDataAsset
@@ -23,6 +24,9 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, Category = "StartupData")
 	TArray<TSubclassOf<URPGGameplayAbility>> ReactiveAbilities;
+
+	UPROPERTY(EditDefaultsOnly, Category = "StartupData")
+	TArray<TSubclassOf<UGameplayEffect>> StartupGameplayEffects;
 
 	void GrantAbilities(const TArray<TSubclassOf<URPGGameplayAbility>>& InAbilitiesToGive, URPGAbilitySystemComponent* InASCToGive, int32 ApplyLevel = 1);
 };

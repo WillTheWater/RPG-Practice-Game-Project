@@ -20,6 +20,11 @@ UAbilitySystemComponent* ARPGBaseCharacter::GetAbilitySystemComponent() const
 	return GetASComponent();
 }
 
+UPawnCombatComponent* ARPGBaseCharacter::GetPawnCombatComponent() const
+{
+	return nullptr;
+}
+
 URPGAbilitySystemComponent* ARPGBaseCharacter::GetASComponent() const
 {
 	return RPGAbilitySystemComponent;

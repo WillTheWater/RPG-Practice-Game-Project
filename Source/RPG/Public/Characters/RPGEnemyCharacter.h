@@ -14,6 +14,7 @@ class RPG_API ARPGEnemyCharacter : public ARPGBaseCharacter
 	GENERATED_BODY()
 public:
 	ARPGEnemyCharacter();
+	virtual UPawnCombatComponent* GetPawnCombatComponent() const override;
 
 	FORCEINLINE UEnemyCombatComponent* GetEnemyCombatComponent() const {return EnemyCombatComponent;}
 

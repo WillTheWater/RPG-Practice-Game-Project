@@ -4,6 +4,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
+#include "Interfaces/PawnCombatInterface.h"
 #include "RPGBaseCharacter.generated.h"
 
 class URPGAbilitySystemComponent;
@@ -11,7 +12,7 @@ class URPGAttributeSet;
 class UDataAsset_StartupBase;
 
 UCLASS()
-class RPG_API ARPGBaseCharacter : public ACharacter, public IAbilitySystemInterface
+class RPG_API ARPGBaseCharacter : public ACharacter, public IAbilitySystemInterface, public IPawnCombatInterface
 {
 	GENERATED_BODY()
 
@@ -19,6 +20,8 @@ public:
 	ARPGBaseCharacter();
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	virtual UPawnCombatComponent* GetPawnCombatComponent() const override;
+
 
 	FORCEINLINE URPGAbilitySystemComponent* GetASComponent() const;
 	FORCEINLINE URPGAttributeSet* GetAttributeSet() const;

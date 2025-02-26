@@ -21,6 +21,8 @@ public:
 	ARPGHeroCharacter();
 
 	FORCEINLINE UHeroCombatComponent* GetHeroCombatComponent() const;
+	virtual UPawnCombatComponent* GetPawnCombatComponent() const override;
+
 
 protected:
 	virtual void PossessedBy(AController* NewController) override;

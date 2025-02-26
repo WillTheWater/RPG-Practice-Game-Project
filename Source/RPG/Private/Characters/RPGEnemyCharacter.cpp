@@ -23,6 +23,11 @@ ARPGEnemyCharacter::ARPGEnemyCharacter()
 	EnemyCombatComponent = CreateDefaultSubobject<UEnemyCombatComponent>("EnemyCombatComponent");
 }
 
+UPawnCombatComponent* ARPGEnemyCharacter::GetPawnCombatComponent() const
+{
+	return EnemyCombatComponent;
+}
+
 void ARPGEnemyCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);

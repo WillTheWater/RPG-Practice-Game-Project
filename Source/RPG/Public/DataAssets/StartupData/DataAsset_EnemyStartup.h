@@ -7,9 +7,7 @@
 #include "DataAsset_EnemyStartup.generated.h"
 
 class URPGEnemyGameplayAbility;
-/**
- * 
- */
+
 UCLASS()
 class RPG_API UDataAsset_EnemyStartup : public UDataAsset_StartupBase
 {

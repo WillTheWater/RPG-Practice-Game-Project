@@ -6,7 +6,8 @@
 #include "UObject/Interface.h"
 #include "PawnCombatInterface.generated.h"
 
-class UPawnCombatComponent; 
+class UPawnCombatComponent;
+
 UINTERFACE(MinimalAPI)
 class UPawnCombatInterface : public UInterface
 {

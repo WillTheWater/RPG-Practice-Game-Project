@@ -6,9 +6,6 @@
 #include "Animation/AnimInstance.h"
 #include "RPGBaseAnimInstance.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class RPG_API URPGBaseAnimInstance : public UAnimInstance
 {

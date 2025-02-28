@@ -5,6 +5,7 @@
 #include "Items/Weapons/WeaponBase.h"
 
 #include "DebugHelpers.h"
+#include "Components/BoxComponent.h"
 
 void UPawnCombatComponent::RegisterSpawnedWeapon(FGameplayTag InWeaponTag, AWeaponBase* InWeaponRegister, bool bEquippedWeapon)
 {
@@ -41,4 +42,23 @@ AWeaponBase* UPawnCombatComponent::GetEquippedWeapon() const
         return nullptr;
     }
     return GetWeaponTag(EquippedWeaponTag);
+}
+
+void UPawnCombatComponent::ToggleWeaponCollision(bool bShouldEnable, EToggleDamageType ToggleDamageType)
+{
+    if ( ToggleDamageType == EToggleDamageType::CurrentEquippedWeapon)
+    {
+        AWeaponBase* WeaponToToggle = GetEquippedWeapon();
+        check(WeaponToToggle)
+        if (bShouldEnable)
+        {
+            WeaponToToggle->GetWeaponCollisonBox()->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+            GEngine->AddOnScreenDebugMessage(-1, 2, FColor::MakeRandomColor(), TEXT("WeaponEnabled"));
+        }
+        else
+        {
+            WeaponToToggle->GetWeaponCollisonBox()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+            GEngine->AddOnScreenDebugMessage(-1, 2, FColor::MakeRandomColor(), TEXT("WeaponDisabled"));
+        }
+    }
 }

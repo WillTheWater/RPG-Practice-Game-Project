@@ -9,6 +9,14 @@
 
 class AWeaponBase;
 
+UENUM(BlueprintType)
+enum class EToggleDamageType : uint8
+{
+	CurrentEquippedWeapon,
+	LeftHand,
+	RightHand	
+};
+
 UCLASS()
 class RPG_API UPawnCombatComponent : public UPawnExtComponentBase
 {
@@ -26,6 +34,9 @@ public:
 
 	UPROPERTY(BlueprintReadWrite, Category = "RPG|Combat")
 	FGameplayTag EquippedWeaponTag;
+	
+	UFUNCTION(BlueprintCallable, Category = "RPG|Combat")
+	void ToggleWeaponCollision(bool bShouldEnable, EToggleDamageType ToggleDamageType = EToggleDamageType::CurrentEquippedWeapon); 
 
 private:
 	TMap<FGameplayTag, AWeaponBase*> CharacterCarriedWeaponMap;

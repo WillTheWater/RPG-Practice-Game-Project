@@ -45,7 +45,6 @@ void ARPGEnemyCharacter::InitEnemyStartupData()
 				if (UDataAsset_StartupBase* LoadedData = CharacterStartupData.Get())
 				{
 					LoadedData->GiveToASC(RPGAbilitySystemComponent);
-					GEngine->AddOnScreenDebugMessage(1, 5, FColor::Red, "Data Loaded");
 				}
 			}
 		)

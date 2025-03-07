@@ -53,12 +53,11 @@ void UPawnCombatComponent::ToggleWeaponCollision(bool bShouldEnable, EToggleDama
         if (bShouldEnable)
         {
             WeaponToToggle->GetWeaponCollisonBox()->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-            GEngine->AddOnScreenDebugMessage(-1, 2, FColor::MakeRandomColor(), TEXT("WeaponEnabled"));
         }
         else
         {
             WeaponToToggle->GetWeaponCollisonBox()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-            GEngine->AddOnScreenDebugMessage(-1, 2, FColor::MakeRandomColor(), TEXT("WeaponDisabled"));
         }
     }
+    // TODO Collision
 }

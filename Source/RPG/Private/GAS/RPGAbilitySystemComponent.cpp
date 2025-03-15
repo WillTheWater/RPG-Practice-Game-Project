@@ -2,6 +2,8 @@
 
 
 #include "GAS/RPGAbilitySystemComponent.h"
+
+#include "RPGGameplayTags.h"
 #include "RPGTypes/RPGStructTypes.h"
 #include "GAS/Abilities/RPGGameplayAbility.h"
 
@@ -19,6 +21,17 @@ void URPGAbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& InInp
 
 void URPGAbilitySystemComponent::OnAbilityInputReleased(const FGameplayTag& InInput)
 {
+	if (!InInput.IsValid() || !InInput.MatchesTag(RPGGameplayTags::InputTag_MustBeHeld))
+	{
+		return;
+	}
+	for (const FGameplayAbilitySpec& Spec : GetActivatableAbilities())
+	{
+		if (!Spec.DynamicAbilityTags.HasTagExact(InInput) && Spec.IsActive())
+		{
+			CancelAbilityHandle(Spec.Handle);
+		}
+	}
 }
 
 void URPGAbilitySystemComponent::GrantHeroWeaponAbilities(const TArray<FRPGAbilitySet>& InDefaultWeaponAbilities, int32 ApplyLevel, TArray<FGameplayAbilitySpecHandle>& OutGrantedAbilitySpecHandle)

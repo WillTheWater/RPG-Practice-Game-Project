@@ -7,6 +7,8 @@
 
 class UBoxComponent;
 
+DECLARE_DELEGATE_OneParam(FOnTargetInteractedDelegate, AActor*);
+
 UCLASS()
 class RPG_API AWeaponBase : public AActor
 {
@@ -15,6 +17,9 @@ class RPG_API AWeaponBase : public AActor
 public:	
 	AWeaponBase();
 
+	FOnTargetInteractedDelegate OnWeaponHitTarget;
+	FOnTargetInteractedDelegate OnWeaponPulledFromTarget;
+	
 	FORCEINLINE UBoxComponent* GetWeaponCollisonBox() const;
 
 protected:

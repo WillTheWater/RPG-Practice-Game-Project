@@ -8,3 +8,14 @@ AHeroWeapon* UHeroCombatComponent::GetHeroEquippedWeaponByTag(FGameplayTag Weapo
 {
     return Cast<AHeroWeapon>(GetWeaponTag(WeaponTag));
 }
+
+void UHeroCombatComponent::OnHitTargetActor(AActor* HitActor)
+{
+   GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::MakeRandomColor(), "Hit Target");
+}
+
+void UHeroCombatComponent::OnWeaponPulledFromTargetActor(AActor* OtherActor)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::MakeRandomColor(), "Stopped Hitting Target");
+
+}

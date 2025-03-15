@@ -16,4 +16,7 @@ class RPG_API UHeroCombatComponent : public UPawnCombatComponent
 public:
 	UFUNCTION(BlueprintCallable, Category = "RPG|Combat")
 	AHeroWeapon* GetHeroEquippedWeaponByTag(FGameplayTag WeaponTag) const;
+	
+	virtual void OnHitTargetActor(AActor* HitActor) override;
+	virtual void OnWeaponPulledFromTargetActor(AActor* OtherActor) override;
 };

@@ -12,7 +12,9 @@ void UPawnCombatComponent::RegisterSpawnedWeapon(FGameplayTag InWeaponTag, AWeap
     checkf(!CharacterCarriedWeaponMap.Contains(InWeaponTag), TEXT("Weapon %s Already Registered"), *InWeaponTag.ToString());
     check(InWeaponRegister)
 
-        CharacterCarriedWeaponMap.Emplace(InWeaponTag, InWeaponRegister);
+    CharacterCarriedWeaponMap.Emplace(InWeaponTag, InWeaponRegister);
+    InWeaponRegister->OnWeaponHitTarget.BindUObject(this, &UPawnCombatComponent::OnHitTargetActor);
+    InWeaponRegister->OnWeaponPulledFromTarget.BindUObject(this, &UPawnCombatComponent::OnWeaponPulledFromTargetActor);
 
     if (bEquippedWeapon)
     {
@@ -60,4 +62,12 @@ void UPawnCombatComponent::ToggleWeaponCollision(bool bShouldEnable, EToggleDama
         }
     }
     // TODO Collision
+}
+
+void UPawnCombatComponent::OnHitTargetActor(AActor* HitActor)
+{
+}
+
+void UPawnCombatComponent::OnWeaponPulledFromTargetActor(AActor* OtherActor)
+{
 }

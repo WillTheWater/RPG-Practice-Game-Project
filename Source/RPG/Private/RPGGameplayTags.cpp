@@ -9,6 +9,8 @@ namespace RPGGameplayTags
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_EquippedAxe, "InputTag.EquippedAxe")
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_UnequippedAxe, "InputTag.UnequippedAxe")
 
+	UE_DEFINE_GAMEPLAY_TAG(InputTag_MustBeHeld, "InputTag.MustBeHeld")
+	
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_LightAttack_Axe, "InputTag.LightAttack.Axe")
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_HeavyAttack_Axe, "InputTag.HeavyAttack.Axe")
 	

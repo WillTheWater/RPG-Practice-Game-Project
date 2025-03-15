@@ -32,7 +32,7 @@ void AWeaponBase::OnCollisionBoxBeginOverlap(UPrimitiveComponent* OverlledCompon
 	{
 		if (WeaponOwningPawn != HitPawn)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, "HitPawn");
+			OnWeaponHitTarget.ExecuteIfBound(OtherActor);
 		}
 		// TODO Hit check for emenies
 	}
@@ -47,7 +47,7 @@ void AWeaponBase::OnCollisionBoxEndOverlap(UPrimitiveComponent* OverlappedCompon
 	{
 		if (WeaponOwningPawn != HitPawn)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 1, FColor::Red, "End Overlap Pawn");
+			OnWeaponPulledFromTarget.ExecuteIfBound(OtherActor);
 		}
 		// TODO Hit check for emenies
 	}

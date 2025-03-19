@@ -27,4 +27,8 @@ namespace RPGGameplayTags
 
 	// Enemy Tags
 	UE_DEFINE_GAMEPLAY_TAG(Enemy_Weapon, "Enemy.Weapon")
+
+	// Shared
+	UE_DEFINE_GAMEPLAY_TAG(Shared_Event_MeleeHit, "Shared.Event.MeleeHit")
+
 }

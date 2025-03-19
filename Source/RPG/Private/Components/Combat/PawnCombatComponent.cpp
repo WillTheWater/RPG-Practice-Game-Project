@@ -59,6 +59,7 @@ void UPawnCombatComponent::ToggleWeaponCollision(bool bShouldEnable, EToggleDama
         else
         {
             WeaponToToggle->GetWeaponCollisonBox()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+            OverlappedActors.Empty();
         }
     }
     // TODO Collision

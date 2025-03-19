@@ -2,6 +2,9 @@
 
 
 #include "Components/Combat/HeroCombatComponent.h"
+
+#include "AbilitySystemBlueprintLibrary.h"
+#include "RPGGameplayTags.h"
 #include "Items/Weapons/HeroWeapon.h"
 
 AHeroWeapon* UHeroCombatComponent::GetHeroEquippedWeaponByTag(FGameplayTag WeaponTag) const
@@ -11,11 +14,18 @@ AHeroWeapon* UHeroCombatComponent::GetHeroEquippedWeaponByTag(FGameplayTag Weapo
 
 void UHeroCombatComponent::OnHitTargetActor(AActor* HitActor)
 {
-   GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::MakeRandomColor(), "Hit Target");
+	if (OverlappedActors.Contains(HitActor))
+	{
+		return;
+	}
+	OverlappedActors.AddUnique(HitActor);
+	FGameplayEventData Data;
+	Data.Instigator = GetOwningPawn();
+	Data.Target = HitActor;
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetOwningPawn(),RPGGameplayTags::Shared_Event_MeleeHit, Data);
 }
 
 void UHeroCombatComponent::OnWeaponPulledFromTargetActor(AActor* OtherActor)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 1.f, FColor::MakeRandomColor(), "Stopped Hitting Target");
 
 }

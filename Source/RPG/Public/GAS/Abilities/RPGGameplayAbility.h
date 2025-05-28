@@ -3,6 +3,7 @@
 #pragma once
 #include "CoreMinimal.h"
 #include "Abilities/GameplayAbility.h"
+#include "RPGTypes/RPGEnumTypes.h"
 #include "RPGGameplayAbility.generated.h"
 
 class UPawnCombatComponent;
@@ -33,4 +34,9 @@ protected:
 	
 	UFUNCTION(BlueprintPure, Category = "Character|Ability")
 	URPGAbilitySystemComponent* GetRPGASCFromActorInfo() const;
+	
+	FActiveGameplayEffectHandle NativeApplyEffectSpecHandleToTarget(AActor* Target, const FGameplayEffectSpecHandle& InSpecHandle);
+
+	UFUNCTION(BlueprintCallable, Category = "Character|Ability", meta = (DisplayName = "Apply Gameplay Effect Spec Handle To Target", ExpandEnumAsExecs = "OutSuccessType"))
+	FActiveGameplayEffectHandle ApplyEffectSpecHandleToTarget(AActor* Target, const FGameplayEffectSpecHandle& InSpecHandle, ERPGSuccessType& OutSuccessType);
 };

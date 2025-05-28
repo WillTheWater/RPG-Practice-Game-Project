@@ -33,6 +33,6 @@ public:
 	static UPawnCombatComponent* NativeGetPawnCombatComponentFromActor(AActor* InActor);
 
 	UFUNCTION(BlueprintCallable, Category = "FunctionLibrary", meta = (DisplayName = "GetPawnCombatComponentFromActor", ExpandEnumAsExecs = "ValidType"))
-	static UPawnCombatComponent* BP_GetPawnCombatComponentFromActor(AActor* InActor, EIRPGValidType& ValidType);
+	static UPawnCombatComponent* BP_GetPawnCombatComponentFromActor(AActor* InActor, ERPGValidType& ValidType);
 	
 };

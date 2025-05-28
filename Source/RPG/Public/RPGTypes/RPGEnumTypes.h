@@ -10,8 +10,15 @@ enum class EConfirmType : uint8
 };
 
 UENUM()
-enum class EIRPGValidType : uint8
+enum class ERPGValidType : uint8
 {
 	Valid,
 	Invalid
+};
+
+UENUM()
+enum class ERPGSuccessType : uint8
+{
+	Successful,
+	Failed
 };

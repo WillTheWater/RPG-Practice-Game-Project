@@ -52,9 +52,9 @@ UPawnCombatComponent* URPGFunctionLibrary::NativeGetPawnCombatComponentFromActor
 }
 
 UPawnCombatComponent* URPGFunctionLibrary::BP_GetPawnCombatComponentFromActor(AActor* InActor,
-	EIRPGValidType& ValidType)
+	ERPGValidType& ValidType)
 {
 	UPawnCombatComponent* CombatComponent = NativeGetPawnCombatComponentFromActor(InActor);
-	ValidType = CombatComponent? EIRPGValidType::Valid : EIRPGValidType::Invalid;
+	ValidType = CombatComponent? ERPGValidType::Valid : ERPGValidType::Invalid;
 	return CombatComponent;
 }

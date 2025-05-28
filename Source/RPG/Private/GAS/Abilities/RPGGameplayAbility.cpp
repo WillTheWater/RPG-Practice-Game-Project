@@ -2,6 +2,8 @@
 
 
 #include "GAS/Abilities/RPGGameplayAbility.h"
+
+#include "AbilitySystemBlueprintLibrary.h"
 #include "Components/Combat/PawnCombatComponent.h"
 #include "GAS/RPGAbilitySystemComponent.h"
 
@@ -40,4 +42,21 @@ UPawnCombatComponent* URPGGameplayAbility::GetPawnCombatComponentFromActorInfo()
 URPGAbilitySystemComponent* URPGGameplayAbility::GetRPGASCFromActorInfo() const
 {
 	return Cast<URPGAbilitySystemComponent>(CurrentActorInfo->AbilitySystemComponent);
+}
+
+FActiveGameplayEffectHandle URPGGameplayAbility::NativeApplyEffectSpecHandleToTarget(AActor* Target,
+	const FGameplayEffectSpecHandle& InSpecHandle)
+{
+	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Target);
+	check(TargetASC && InSpecHandle.IsValid());
+
+	return GetRPGASCFromActorInfo()->ApplyGameplayEffectSpecToTarget(*InSpecHandle.Data, TargetASC);
+}
+
+FActiveGameplayEffectHandle URPGGameplayAbility::ApplyEffectSpecHandleToTarget(AActor* Target,
+	const FGameplayEffectSpecHandle& InSpecHandle, ERPGSuccessType& OutSuccessType)
+{
+	FActiveGameplayEffectHandle ActiveGEHandle = NativeApplyEffectSpecHandleToTarget(Target, InSpecHandle);
+	OutSuccessType =ActiveGEHandle.WasSuccessfullyApplied()? ERPGSuccessType::Successful : ERPGSuccessType::Failed;
+	return ActiveGEHandle;
 }

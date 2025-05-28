@@ -27,11 +27,15 @@ namespace RPGGameplayTags
 	
 	RPG_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Status_JumpToFinisher)
 
+	RPG_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_SetByCaller_AttackType_Light)
+	RPG_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_SetByCaller_AttackType_Heavy)
+
 	// Enemy Tags
 	RPG_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Enemy_Weapon)
 
 	// Shared
 	RPG_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_Event_MeleeHit)
+	RPG_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_SetByCaller_BaseDamage)
 	
 
 }

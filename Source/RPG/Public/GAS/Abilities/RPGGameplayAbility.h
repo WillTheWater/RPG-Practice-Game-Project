@@ -33,7 +33,7 @@ protected:
 	UPawnCombatComponent* GetPawnCombatComponentFromActorInfo() const;
 	
 	UFUNCTION(BlueprintPure, Category = "Character|Ability")
-	URPGAbilitySystemComponent* GetRPGASCFromActorInfo() const;
+	URPGAbilitySystemComponent* GetRPGAbilitySystemComponentFromActorInfo() const;
 	
 	FActiveGameplayEffectHandle NativeApplyEffectSpecHandleToTarget(AActor* Target, const FGameplayEffectSpecHandle& InSpecHandle);
 

@@ -39,7 +39,7 @@ UPawnCombatComponent* URPGGameplayAbility::GetPawnCombatComponentFromActorInfo()
 	
 }
 
-URPGAbilitySystemComponent* URPGGameplayAbility::GetRPGASCFromActorInfo() const
+URPGAbilitySystemComponent* URPGGameplayAbility::GetRPGAbilitySystemComponentFromActorInfo() const
 {
 	return Cast<URPGAbilitySystemComponent>(CurrentActorInfo->AbilitySystemComponent);
 }
@@ -48,9 +48,10 @@ FActiveGameplayEffectHandle URPGGameplayAbility::NativeApplyEffectSpecHandleToTa
 	const FGameplayEffectSpecHandle& InSpecHandle)
 {
 	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Target);
-	check(TargetASC && InSpecHandle.IsValid());
+	check(TargetASC);
+	check(InSpecHandle.IsValid());
 
-	return GetRPGASCFromActorInfo()->ApplyGameplayEffectSpecToTarget(*InSpecHandle.Data, TargetASC);
+	return GetRPGAbilitySystemComponentFromActorInfo()->ApplyGameplayEffectSpecToTarget(*InSpecHandle.Data, TargetASC);
 }
 
 FActiveGameplayEffectHandle URPGGameplayAbility::ApplyEffectSpecHandleToTarget(AActor* Target,

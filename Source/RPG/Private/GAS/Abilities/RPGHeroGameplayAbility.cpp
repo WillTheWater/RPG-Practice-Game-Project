@@ -38,11 +38,11 @@ FGameplayEffectSpecHandle URPGHeroGameplayAbility::MakeHeroDamageEffectSpecHandl
     int32 InUsedComboCount)
 {
     check (EffectClass);
-    FGameplayEffectContextHandle EffectContext = GetRPGASCFromActorInfo()->MakeEffectContext();
+    FGameplayEffectContextHandle EffectContext = GetRPGAbilitySystemComponentFromActorInfo()->MakeEffectContext();
     EffectContext.SetAbility(this);
     EffectContext.AddSourceObject(GetAvatarActorFromActorInfo());
     EffectContext.AddInstigator(GetAvatarActorFromActorInfo(), GetAvatarActorFromActorInfo());
-    FGameplayEffectSpecHandle EffectSpecHandle = GetRPGASCFromActorInfo()->MakeOutgoingSpec(EffectClass, GetAbilityLevel(), EffectContext);
+    FGameplayEffectSpecHandle EffectSpecHandle = GetRPGAbilitySystemComponentFromActorInfo()->MakeOutgoingSpec(EffectClass, GetAbilityLevel(), EffectContext);
     EffectSpecHandle.Data->SetSetByCallerMagnitude(RPGGameplayTags::Shared_SetByCaller_BaseDamage, InWeaponDamage);
     if (InCurrentAttackTypeTag.IsValid())
     {
